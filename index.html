@@ -1,17 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student Roadmap Kanban</title>
   <link rel="stylesheet" href="../Styles/index.css">
-  <title>NamiBoard </title>
 </head>
 <body>
-  <h1>NamiBoard</h1>
-  <button onclick="x()">Click me</button>
+  <div class="container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+          <h2 class="logo">FourAxis</h2>
+          <nav class="nav">
+              <a href="#">Boards</a>
+              <a href="#">My Task</a>
+              <a href="#">Leads</a>
+              <a href="#">Documents</a>
+              <a href="#">Clients</a>
+              <div class="divider"></div>
+              <h4>Favorites</h4>
+              <a href="#">Space</a>
+              <a href="#">Team Space</a>
+              <a href="#">Projects</a>
+              <a href="#">Creative Redesign Hub</a>
+          </nav>
+      </aside>
 
+      <!-- Main Content -->
+      <main class="main">
+          <!-- Top Bar -->
+          <div class="top-bar">
+              <h1>Projects</h1>
+              <input type="text" placeholder="Search...">
+              <button class="create-btn">+ Create</button>
+              <div class="user-icons">
+                  <div class="user-circle">Sa</div>
+                  <div class="user-circle">Sa</div>
+              </div>
+          </div>
 
+          <!-- Kanban Board -->
+          <div class="kanban">
+              <div class="column">
+                  <h2>New</h2>
+                  <div class="card">Wireframing the Homepage Layout</div>
+                  <div class="card">Gathering Design Inspirations</div>
+                  <div class="card">Defining Color Palette</div>
+              </div>
+
+              <div class="column">
+                  <h2>In Progress</h2>
+                  <div class="card">Designing Homepage UI</div>
+                  <div class="card">Creating Icon Set</div>
+              </div>
+
+              <div class="column">
+                  <h2>Pending</h2>
+                  <div class="card">Client Feedback on Homepage</div>
+                  <div class="card">Approval for Brand Guidelines</div>
+                  <div class="card">Final Decision on Layout</div>
+              </div>
+
+              <div class="column">
+                  <h2>Completed</h2>
+                  <div class="card">Finalized Logo & Branding</div>
+                  <div class="card">Completed Wireframe</div>
+              </div>
+          </div>
+      </main>
+  </div>
 </body>
 
-<script src="../JavaScript/index.js"></script>
+  <script src="../JavaScript/index.js"></script>
+
 </html>
