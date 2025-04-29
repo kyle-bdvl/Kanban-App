@@ -2,7 +2,7 @@ function handleCreate() {
   handleClick();
 }
 
-let columns = []; // array of column titles
+let ColumnArray = []; // array of column titles
 
 function handleClick() {
   let dialog = document.createElement('dialog');
@@ -32,7 +32,7 @@ function handleClick() {
 }
 
 function addingColumn(titleName) {
-  columns.push(titleName); // store just the title
+  ColumnArray.push({ title: titleName, tasks: [] }); // store just the title
   renderColumns();
 }
 
@@ -40,31 +40,73 @@ function renderColumns() {
   let kanbanBoard = document.querySelector('.kanban');
   kanbanBoard.innerHTML = ""; // clear board
 
-  columns.map((title,index) => {
+  ColumnArray.map((column, index) => {
     let col = document.createElement('div'); // FIX: create new div
     col.classList.add('column');
     col.innerHTML = `
       <div class="topCard">
-        <h2>${title}</h2>
+        <h2>${column.title}</h2>
         <img onclick="deleteColumn(${index})"src="../Assets/trashBinIcon.png" id="trashIcon"/>
       </div>
-      <div class="task">
+      <div class="task" id="task-col-${index}">
 
       </div>
-      <button class="create-btn" onclick="">+ Add Task</button>
+      <button class="create-btn" onclick="addTask(${index})">+ Add Task</button>
     `;
     kanbanBoard.appendChild(col);
-  });
+
+    // Render Tasks inside this render Column function 
+    let taskContainer = col.querySelector(`#task-col-${index}`);
+    column.tasks.map(task => {
+      let taskDiv = document.createElement('div');
+      taskDiv.innerHTML = `
+      <h5>${task.taskname}</h5>
+      <p>${task.date}</p>
+    `;
+    taskContainer.appendChild(taskDiv);
+
+    }); //inner map loop for the task
+  }); // outmap for the column
+
+
 }
 
 // to manipulate the columns
-function deleteColumn (index){
-  columns.splice(index,1);
+function deleteColumn(index) {
+  ColumnArray.splice(index, 1);
   renderColumns();
-} 
+}
+
+
 
 // Adding tasks to the columns 
-function addTask(){
-  
+function addTask(columnIndex) {
+  let dialog = document.createElement('dialog');
+  dialog.setAttribute('class', 'inputDialog');
+
+  dialog.innerHTML = `
+    <p>Greetings, one and all!</p>
+    <form method="dialog">
+      <input placeholder="Taskname" id="Taskname" required/>
+      <input placeholder="Date" id="date" type="Date" required/>
+      <button>Submit</button>
+    </form>
+  `;
+
+  document.body.appendChild(dialog); // append to body for full-screen centering
+  dialog.showModal();
+
+  dialog.addEventListener('close', () => {
+    let taskname = document.getElementById("Taskname").value.trim();
+    let date = document.getElementById('date').value;
+
+    if (taskname) {
+      ColumnArray[columnIndex].tasks.push({ taskname: taskname, date: date });
+      renderColumns(); //re renders the columns with updated tasks
+    }
+
+    dialog.remove();
+  });
 }
+
 
