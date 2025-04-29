@@ -40,13 +40,31 @@ function renderColumns() {
   let kanbanBoard = document.querySelector('.kanban');
   kanbanBoard.innerHTML = ""; // clear board
 
-  columns.map(title => {
+  columns.map((title,index) => {
     let col = document.createElement('div'); // FIX: create new div
     col.classList.add('column');
-    col.innerHTML = `<h2>${title}</h2>`;
+    col.innerHTML = `
+      <div class="topCard">
+        <h2>${title}</h2>
+        <img onclick="deleteColumn(${index})"src="../Assets/trashBinIcon.png" id="trashIcon"/>
+      </div>
+      <div class="task">
+
+      </div>
+      <button class="create-btn" onclick="">+ Add Task</button>
+    `;
     kanbanBoard.appendChild(col);
   });
 }
 
-// to manipulate the columns 
+// to manipulate the columns
+function deleteColumn (index){
+  columns.splice(index,1);
+  renderColumns();
+} 
+
+// Adding tasks to the columns 
+function addTask(){
+  
+}
 

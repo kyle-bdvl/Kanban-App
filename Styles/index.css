@@ -138,6 +138,17 @@ dialog.inputDialog {
   font-size: 18px;
 }
 
+.topCard{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+#trashIcon{
+  width:1.3rem;
+  height: 1.3rem;
+}
+
 
 
 
