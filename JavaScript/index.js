@@ -49,7 +49,7 @@ function renderColumns() {
         <img onclick="deleteColumn(${index})"src="../Assets/trashBinIcon.png" id="trashIcon"/>
       </div>
       <div class="task" id="task-col-${index}">
-
+      
       </div>
       <button class="create-btn" onclick="addTask(${index})">+ Add Task</button>
     `;
@@ -58,10 +58,12 @@ function renderColumns() {
     // Render Tasks inside this render Column function 
     let taskContainer = col.querySelector(`#task-col-${index}`);
     column.tasks.map(task => {
-      let taskDiv = document.createElement('div');
+      let taskDiv = document.createElement('ul');
       taskDiv.innerHTML = `
-      <h5>${task.taskname}</h5>
-      <p>${task.date}</p>
+      <li>
+        <h5>${task.taskname}</h5>
+        <p>${task.date}</p>
+      </li>
     `;
     taskContainer.appendChild(taskDiv);
 
@@ -76,6 +78,8 @@ function deleteColumn(index) {
   ColumnArray.splice(index, 1);
   renderColumns();
 }
+
+// function to delete the task in the columns
 
 
 
