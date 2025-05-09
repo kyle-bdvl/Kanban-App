@@ -35,7 +35,7 @@ function addingColumn(titleName) {
   ColumnArray.push({ title: titleName, tasks: [] }); // store just the title
   renderColumns();
 }
-
+// Main function sort of 
 function renderColumns() {
   let kanbanBoard = document.querySelector('.kanban');
   kanbanBoard.innerHTML = ""; // clear board
@@ -57,15 +57,18 @@ function renderColumns() {
 
     // Render Tasks inside this render Column function 
     let taskContainer = col.querySelector(`#task-col-${index}`);
-    column.tasks.map(task => {
+    column.tasks.map((task, taskIndex) => {
       let taskDiv = document.createElement('ul');
       taskDiv.innerHTML = `
       <li>
-        <h5>${task.taskname}</h5>
+        <div>
+          <h5>${task.taskname}</h5>
+          <img src="../Assets/trashBinIcon.png" id="trashIcon" onclick="deleteTask(${index}, ${taskIndex})"/>
+        </div>
         <p>${task.date}</p>
       </li>
     `;
-    taskContainer.appendChild(taskDiv);
+      taskContainer.appendChild(taskDiv);
 
     }); //inner map loop for the task
   }); // outmap for the column
@@ -79,9 +82,7 @@ function deleteColumn(index) {
   renderColumns();
 }
 
-// function to delete the task in the columns
-
-
+// function to delete the task in the column
 
 // Adding tasks to the columns 
 function addTask(columnIndex) {
@@ -105,12 +106,18 @@ function addTask(columnIndex) {
     let date = document.getElementById('date').value;
 
     if (taskname) {
-      ColumnArray[columnIndex].tasks.push({ taskname: taskname, date: date });
+      ColumnArray[columnIndex].tasks.push({ taskname, date: date });
       renderColumns(); //re renders the columns with updated tasks
     }
 
     dialog.remove();
   });
+}
+
+// to delete the task individually 
+function deleteTask(colIndex, TaskIndex) {
+  ColumnArray[colIndex].tasks.splice(TaskIndex, 1);
+  renderColumns();
 }
 
 

@@ -144,23 +144,38 @@ dialog.inputDialog {
   flex-direction: row;
 }
 
+.topCard > img:hover{
+  cursor: pointer;
+}
+
 #trashIcon{
   width:1.3rem;
   height: 1.3rem;
 }
 
 .task ul {
-  list-style: none;         /* Remove default bullets */
-  padding: 0;               /* Remove default padding */
-  margin: 0;                /* Remove default margin */
+  list-style: none;         
+  padding: 0;               
+  margin: 0;                
 }
 
 .task li {
-  background-color: #f2f2f2; /* Light grey background */
-  padding: 10px;             /* Space inside each item */
-  margin-bottom: 10px;       /* Space between items */
-  border-radius: 5px;        /* Rounded corners */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  background-color: #f2f2f2; 
+  padding: 10px;             
+  margin-bottom: 10px;       
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+}
+
+.task li div {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.task li div img{
+  width: 0.4rem;
+  height: 0.4rem;
 }
 
 .task li:hover {
